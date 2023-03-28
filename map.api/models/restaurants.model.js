@@ -2,7 +2,7 @@
 const { default: mongoose } = require('mongoose');
 
 const RestaurantsSchema = new mongoose.Schema({
-    restaurantsName: String,
+    restaurantName: String,
     location: {
         type: {
             type: String,

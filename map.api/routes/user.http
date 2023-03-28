@@ -1,0 +1,15 @@
+
+
+###
+POST http://localhost:6066/api/user
+Content-Type: application/json
+
+{
+    "userName": "Amara",
+    "location":{
+        "type": "Point",
+        "coordinates":[47.92374108411315, 106.93352863307179]
+    }
+}
+###
+GET http://localhost:6066/api/user

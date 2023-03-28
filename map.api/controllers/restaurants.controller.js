@@ -23,27 +23,37 @@ exports.get = async (req, res) => {
 
 exports.getResbyNear = async (req, res) => {
     const { lat, long } = req.body;
+    console.log(lat, long)
     try {
         const usercurrentloc = await User.findOne({
             location: {
-                $near: {
+                $geoIntersects: {
                     $geometry: {
                         type: "Point",
-                        coordinates: [long, lat],
+                        coordinates: [lat, long],
                     },
                 },
             },
         });
-
+        console.log(usercurrentloc)
         const result = await Restaurants.find({
             location: {
                 $near: {
-                    $geometry: usercurrentloc.$geometry
+                    $geometry: usercurrentloc.location
                 }
             }
         })
         res.json({ status: true, result });
     } catch (err) {
-        res.json({ statis: false, message: err });
+        res.json({ status: false, message: err });
     };
 };
+
+exports.create = async (req, res) => {
+    try {
+        const result = await Restaurants.create(req.body);
+        res.json({ status: true, result });
+    } catch (err) {
+        res.json({ status: false, message: err });
+    }
+}
