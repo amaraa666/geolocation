@@ -32,21 +32,22 @@ export default function Control() {
 
     }
     const callFunc = (param) => {
-        const path = ''
+        let path = ''
         if (param === 1) {
-            path = ''
+            path = 'res'
         } else if (param === 2) {
-            path = ''
+            path = 'nearRes'
         } else {
             path = '0'
         }
+        getDataFromApi(path)
     }
     return (
         <>
             <NearRes myData={myData} myResData={myResData} />
             <div className="control">
-                <p onClick={() => callFunc(1)}>find restaurants</p>
-                <p>near restaurants</p>
+                <p onClick={() => callFunc("1")}>find restaurants</p>
+                <p onClick={() => callFunc("2")}>near restaurants</p>
             </div>
         </>
     )

@@ -22,6 +22,14 @@ export default function NearRes({ myData, myResData }) {
                     </Marker>
                 )
             })}
+            {myResData.map((e) => {
+                console.log(e)
+                return (
+                    <Marker position={[e.location.coordinates[1], e.location.coordinates[0]]}>
+                        <Popup>{e.restaurantName}</Popup>
+                    </Marker>
+                )
+            })}
         </MapContainer >
     )
 }
